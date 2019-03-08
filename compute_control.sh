@@ -1,0 +1,35 @@
+#!/bin/sh
+inversvid="\0033[7m"
+resetvid="\0033[0m"
+greenback="\0033[1;37;42m"
+blueback="\0033[1;37;44m"
+redback="\0033[1;37;41m"
+
+
+
+for f in $(cat /compute_servicelist);
+do
+
+		sonuc=`/usr/sbin/service $f status  | /bin/grep "active (running)" | /usr/bin/wc -l`
+
+		if [ $sonuc -eq 1 ]
+		then
+		        echo  "$f $greenback Running $resetvid"
+
+		else
+		        echo  "$f $inversvid not Running $resetvid"
+	        	service $f start
+	        	sonuc=`/usr/sbin/service $f status  | /bin/grep "active (running)" | /usr/bin/wc -l`
+        		if [ $sonuc -eq 1 ]
+        		then
+        	        	echo "$f $blueback Started $resetvid"
+        		else
+        	        	echo "$f $redback Not Started  $resetvid"
+        		fi
+		fi
+
+done
+
+
+
+
