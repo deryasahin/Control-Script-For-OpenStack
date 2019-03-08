@@ -20,8 +20,13 @@ Populate Service Databases : These are the commands used to create tables by ref
 Required Directories for Files
 
 control.sh -> /home/
+
 controller_control.sh -> /home/
+
 controller_servicelist -> /home/
+
 compute_control.sh ->  root
+
 compute_servicelist -> root
+
 restart.sh -> root
